@@ -1,0 +1,4 @@
+As classes dentro deste diretório servem para:
+
+- definir exatamente o corpo dos objetos que vamos: criar, receber e enviar para Serviços/APIs externas;
+- definir os getters/setters destes mesmos objetos;

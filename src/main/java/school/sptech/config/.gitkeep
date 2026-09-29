@@ -1,0 +1,4 @@
+As classes dentro deste diretório servem para:
+
+- criar conexões com Serviços e/ou APIs externas;
+- instanciar e disponibilizar objetos que já estão conectados aos Serviços/APIs externas, como: JdbcTemplate, S3Client e HttpClient

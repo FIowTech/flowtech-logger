@@ -1,0 +1,3 @@
+As classes dentro deste diretório servem para:
+
+- criar os métodos com as instruções SQL para se comunicar com o Banco de Dados;
