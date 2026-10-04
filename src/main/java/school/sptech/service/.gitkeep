@@ -1,4 +1,0 @@
-As classes dentro deste diretório servem para:
-
-- definir métodos que aplicam as regras de negócio da aplicação;
-- definir a lógica de como as demais classes se conversam;
