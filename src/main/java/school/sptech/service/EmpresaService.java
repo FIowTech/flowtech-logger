@@ -10,19 +10,19 @@ public class EmpresaService {
         this.empresaDAO = empresaDao;
     }
 
-    public Empresa buscarEmpresaEValidarCredenciaisJira(Integer idEmpresa) {
-        Empresa empresa = empresaDAO.getById(idEmpresa);
-        if (empresa == null) {
-            System.out.println("[ AVISO ] Nenhuma empresa encontrada para o ID: " + idEmpresa);
-            return null;
-        }
+    public Boolean credenciaisJiraValidas(Empresa empresa) {
+        if(empresa == null) return false;
 
-        if (empresa.getJiraEmail() == null || empresa.getJiraApiKey() == null
-                || empresa.getJiraBaseUrl() == null || empresa.getJiraProjectKey() == null) {
+        if(
+                empresa.getJiraEmail() == null ||
+                empresa.getJiraApiKey() == null ||
+                empresa.getJiraBaseUrl() == null ||
+                empresa.getJiraProjectKey() == null
+        ) {
             System.out.printf("[ AVISO ] A empresa %s não configurou todas as credenciais do Jira\n", empresa.getRazaoSocial());
-            return null;
-        }
+            return false;
+        };
 
-        return empresa;
+        return true;
     }
 }

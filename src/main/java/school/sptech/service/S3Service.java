@@ -31,13 +31,39 @@ public class S3Service {
 
         System.out.println("[ LOG ] Buscando Capturas em: " + prefix);
 
-        ListObjectsV2Request request = ListObjectsV2Request.builder()
+        ListObjectsV2Request requestCpu = ListObjectsV2Request.builder()
                 .bucket(bucketName)
-                .prefix(prefix)
+                .prefix(prefix + "componente=cpu/")
                 .build();
 
-        ListObjectsV2Response response = s3Client.listObjectsV2(request);
-        for (S3Object content : response.contents()) {
+        ListObjectsV2Response responseCpu = s3Client.listObjectsV2(requestCpu);
+        for (S3Object content : responseCpu.contents()) {
+            if(content.key().endsWith(".json")) {
+                CapturaDTO capture = lerJsonParaObjeto(bucketName, content.key());
+                if(capture != null) captures.add(capture);
+            }
+        }
+
+        ListObjectsV2Request requestRam = ListObjectsV2Request.builder()
+                .bucket(bucketName)
+                .prefix(prefix + "componente=ram/")
+                .build();
+
+        ListObjectsV2Response responseRam = s3Client.listObjectsV2(requestRam);
+        for (S3Object content : responseRam.contents()) {
+            if(content.key().endsWith(".json")) {
+                CapturaDTO capture = lerJsonParaObjeto(bucketName, content.key());
+                if(capture != null) captures.add(capture);
+            }
+        }
+
+        ListObjectsV2Request requestRede = ListObjectsV2Request.builder()
+                .bucket(bucketName)
+                .prefix(prefix + "componente=rede/")
+                .build();
+
+        ListObjectsV2Response responseRede = s3Client.listObjectsV2(requestRede);
+        for (S3Object content : responseRede.contents()) {
             if(content.key().endsWith(".json")) {
                 CapturaDTO capture = lerJsonParaObjeto(bucketName, content.key());
                 if(capture != null) captures.add(capture);

@@ -5,11 +5,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
 
-// Ignora campos não declarados nesta Classe
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record ComponenteDTO(
-        @JsonProperty("id_componente")
-        Integer idComponente,
+        String nome,
 
-        Map<String, MetricaDTO> metricas
+        Double valor,
+
+        String situacao,
+
+        @JsonProperty("limite_max")
+        Double limiteMax,
+
+        @JsonProperty("limite_min")
+        Double limiteMin
 ) {}
+
+// Ignora campos não declarados nesta Classe
+//@JsonIgnoreProperties(ignoreUnknown = true)
+//public record ComponenteDTO(
+//        @JsonProperty("id_componente")
+//        Integer idComponente,
+//
+//        Map<String, MetricaDTO> metricas
+//) {}
